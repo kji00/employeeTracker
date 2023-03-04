@@ -1,6 +1,6 @@
 -- Use employee db
 
-USE employees;
+USE employees_db;
 
 -- Insert into tables
 

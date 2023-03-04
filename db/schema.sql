@@ -1,16 +1,16 @@
-DROP DATABASE IF EXISTS employees;
+DROP DATABASE IF EXISTS employees_db;
 
 -- Create new employee DB
-CREATE DATABASE employees;
+CREATE DATABASE employees_db;
 
 -- Use the employees DB
-USE employees;
+USE employees_db;
 
 -- Creates department table
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100)
-);
+); 
 
 -- Creates role table
 CREATE TABLE roles (
