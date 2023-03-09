@@ -92,8 +92,21 @@ function viewAllEmployees(){
 
 function viewEmployeesDepartment(){
     
-    console.log('All Departments\n')
+    console.log('All Department Employees\n')
 
-    const sqlQuery =
+    const sqlQuery = 
+    `SELECT e.first_name, e.last_name, d.name AS department 
+    FROM employee e 
+    LEFT JOIN department d 
+        ON e.role_id = d.id ORDER BY department`
+
+        db.query(sqlQuery, function(err, res){
+            if (err) throw err;
+    
+            console.table(res);
+    
+            employee_prompt();
+        })
+    
 }
 
