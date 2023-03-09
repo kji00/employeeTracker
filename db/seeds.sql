@@ -1,4 +1,4 @@
--- Use employee db
+-- Use employees db
 
 USE employees_db;
 
@@ -14,7 +14,7 @@ VALUES
 -- Insert employees into tables with roles, pay and department
 
 INSERT INTO
-    role (title, salary, department_id)
+    roles (title, salary, department_id)
 VALUES 
     ("Sales Lead", 100000, 1),
     ("Lead Engineer", 150000, 2),
@@ -35,7 +35,7 @@ VALUES
     ("Mike", "Chan", 2, 1),
     ("Ashley", "Rodriguez", 3, null),
     ("Kevin", "Tupik", 4, 3),
-    ("Kunal", "Singh", 5, null),
-    ("Malia", "Brown", 2, null),
+    ("Kunal", "Singh", 3, null),
+    ("Malia", "Brown", 2, 1),
     ("Sarah", "Lourd", 4, 7),
     ("Tom", "Allen", 1, 2);
