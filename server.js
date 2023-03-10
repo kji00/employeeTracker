@@ -147,7 +147,7 @@ function addDepartment(){
             if (err) throw err;
             console.log('New department added.');
 
-            dbquery(`SELECT * FROM department`, (err, result) => {
+            dbquery(`SELECT * FROM department`, (err, res) => {
                 if (err) throw err;
                 console.table(res);
                 employee_prompt();
@@ -157,24 +157,95 @@ function addDepartment(){
     })
 }
 
+// add new role to roles table
+function addRole(){
+    console.log('Add a new Role:\n')
+
+    // inquirer prompt to add a new role (title, salary and department_id)
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "title",
+            message: "Enter the title of the new role"
+        },
+        {
+            type: "input",
+            name: "salary",
+            message: "Enter salary amount"
+        },
+        {
+            type: "number",
+            name: "department_id",
+            message: "Enter department id"
+        }
+    ]).then(answer => {
+        // add new role query
+        const sqlQuery = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`
+        const params = [answer.title, answer.salary, answer.department_id]
+
+        dbquery(sqlQuery, params, (err, res) => {
+            if (err) throw err;
+            console.log('New role added.');
+
+            dbquery(`SELECT * FROM roles`, (err, res) => {
+                if (err) throw err;
+                console.table(res);
+                employee_prompt();
+            })
+        })
+    })
+}
+
+// add new employee to employee table
 function addEmployee(){
     console.log('Add a New Employee:\n')
 
     // inquirer prompt to answer questions about new employee
     inquirer.prompt([
         {
-            type: 'input',
-            name: 'firstName',
-            message: 'New hire first name: '
+            type: "input",
+            name: "first_name",
+            message: "New hire first name: "
         },
         {
-            type: 'input',
-            name: 'lastName',
-            message: 'New hire last name: '   
+            type: "input",
+            name: "last_name",
+            message: "New hire last name: "  
         },
         {
-            type: ''
+            type: "number",
+            name: "role_id",
+            message: "Enter role id:"
+        },
+        {
+            type: "number",
+            name: "manager_id",
+            message: "Enter the manager\'s id"
         }
-])
+    ]).then(answer => {
+        // add new employee query
+        const sqlQuery = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`
+        const params = [answer.first_name, answer.last_name, answer.role_id, answer.manager_id]
+
+        dbquery(sqlQuery, params, (err, res) => {
+            if (err) throw err;
+            console.log('New employee added.');
+
+            dbquery(`SELECT * FROM employee`, (err, res) => {
+                if (err) throw err;
+                console.table(res);
+                employee_prompt();
+            })
+        })
+    })
 }
 
+// update employee role
+function updateEmployeeRole(){
+    console.log('Update employee')
+
+    db.query(`SELECT * FROM employee, roles`, (err, res) => {
+        // inquirer prompt to choose which employee to update and role
+        inquirer.prompt
+    })
+}
