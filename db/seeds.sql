@@ -33,9 +33,9 @@ INSERT INTO
 VALUES 
     ("Jane", "Doe", 1, 3),
     ("Mike", "Chan", 2, 1),
-    ("Ashley", "Rodriguez", 3, null),
+    ("Ashley", "Rodriguez", 3, 4),
     ("Kevin", "Tupik", 4, 3),
-    ("Kunal", "Singh", 3, null),
+    ("Kunal", "Singh", 3, 4),
     ("Malia", "Brown", 2, 1),
     ("Sarah", "Lourd", 4, 7),
     ("Tom", "Allen", 1, 2);
