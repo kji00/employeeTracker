@@ -31,12 +31,13 @@ function employee_prompt() {
         name: "selection",
         message: "Choose from the following options: ",
         choices: [
+            "View All Departments",
+            "View All Roles",
             "View All Employees",
-            "View Employees by Department",
-            "Add Employee",
-            "Remove Employee",
+            "Add a Department",
+            "Add a Role",
+            "Add an Employee",
             "Update Employee Role",
-            "Add Role",
             "End"]
     })
     // Once the user choice has been selected, the selection choice calls the corresponding function to get the information that is needed
@@ -54,9 +55,9 @@ function employee_prompt() {
             case "Add a Department":
                 addDepartment();
                 break;
-            case "Add Role":
+            case "Add a Role":
                 addRole();
-            case "Add Employee":
+            case "Add an Employee":
                 addEmployee();
                 break;
             case "Update Employee Role":
