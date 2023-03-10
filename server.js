@@ -63,7 +63,7 @@ function employee_prompt() {
                 updateEmployeeRole();
                 break;
             case "End":
-                db.end();
+                db.endSession();
                 break;
         }
     })
@@ -245,7 +245,57 @@ function updateEmployeeRole(){
     console.log('Update employee')
 
     db.query(`SELECT * FROM employee, roles`, (err, res) => {
+        if (err) throw err;
+
         // inquirer prompt to choose which employee to update and role
-        inquirer.prompt
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "employee",
+                message: "Choose which employee to update",
+                choices: () => {
+                    let empList = [];
+                    for(let i = 0; i < res.length; i++){
+                        empList.push(res[i].first_name);
+                    }
+                    let newEmpList = [...new Set(empList)]
+                    return newEmpList;
+                }
+            },
+            {
+                type: "list",
+                name: "role",
+                message: "Choose employee's new role",
+                choices: () => {
+                    let roleList = [];
+                    for(let i = 0; i < res.length; i++){
+                        roleList.push(res[i].title); 
+                    }
+                    let newRoleList = [...new Set(roleList)];
+                    return newRoleList;
+                }
+            }
+        ]).then(answer => {
+            for (let i = 0; i < res.length; i++) {
+                if (res[i].first_name === answer.employee) {
+                    let name = res[i];
+                }
+            }
+
+            for (let i = 0; i < res.length; i++) {
+                if (res[i].title === answer.role) {
+                    let role = res[i];
+                }
+            }
+
+            const sqlQuery = `UPDATE employee SET ? WHERE ?`
+            const params = [{role_id: role}, {first_name: name}]
+
+            dbquery(sqlQuery, params, (err, res) => {
+                if (err) throw err;
+                console.log('Employee has been added.');
+                employee_prompt();
+            })
+        })
     })
 }
